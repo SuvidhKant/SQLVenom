@@ -13,7 +13,7 @@ How to Use:
 
 Clone the repository:
 
-git clone https://github.com/yourusername/sql-venom.git
+git clone https://github.com/SuvidhKant/SQLVenom.git
 
 Navigate to the project directory:
 
