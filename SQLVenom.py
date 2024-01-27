@@ -8,7 +8,8 @@ payloads_dict = {
     "Generic SQL Injection": "payloads/payloadsgeneric_sql_injection.txt",
     "Generic Error Based": "payloads/payloadsgeneric_error_based.txt",
     "Generic Time Based SQL": "payloads/payloadsgeneric_time_based_sql.txt",
-    "Auth Bypass": "payloads/payloadsauth_bypass.txt"
+    "Auth Bypass": "payloads/payloadsauth_bypass.txt",
+    "Generic Union Select": "payloads/payloadsgeneric_Union_Select.txt"
 }
 
 def concatenate_list_data(lst, result):
@@ -40,7 +41,7 @@ class SQLVenomGUI:
         self.font_combobox.set("standard")
 
         self.payload_label = ttk.Label(self.main_frame, text="Select Payload Type:")
-        self.payload_combobox = ttk.Combobox(self.main_frame, values=["Generic SQL Injection", "Generic Error Based", "Generic Time Based SQL", "Auth Bypass"])
+        self.payload_combobox = ttk.Combobox(self.main_frame, values=["Generic SQL Injection", "Generic Error Based", "Generic Time Based SQL", "Auth Bypass", "Generic Union Select"])
         self.payload_combobox.set("Select Payload")
 
         self.start_button = ttk.Button(self.main_frame, text="Start SQL Injection Scan", command=self.start_scan)
