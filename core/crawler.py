@@ -39,4 +39,4 @@ def spider(url, maxPages):
             pass
         return links
 
-print(spider("http://vulnweb.com", 10))
+# print(spider("http://vulnweb.com", 10))
