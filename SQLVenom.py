@@ -37,8 +37,8 @@ class SQLVenomGUI:
         self.subs_check = ttk.Checkbutton(self.main_frame, text="Include Subdomains", variable=self.subs_var)
 
         self.font_label = ttk.Label(self.main_frame, text="Choose PyFiglet Font:")
-        self.font_combobox = ttk.Combobox(self.main_frame, values=["standard", "slant"])
-        self.font_combobox.set("standard")
+        self.font_combobox = ttk.Combobox(self.main_frame, values=["Standard", "Slant"])
+        self.font_combobox.set("Font")
 
         self.payload_label = ttk.Label(self.main_frame, text="Select Payload Type:")
         self.payload_combobox = ttk.Combobox(self.main_frame, values=["Generic SQL Injection", "Generic Error Based", "Generic Time Based SQL", "Auth Bypass", "Generic Union Select"])
@@ -55,14 +55,11 @@ class SQLVenomGUI:
         self.font_label.grid(row=2, column=0, sticky=tk.W, pady=5)
         self.font_combobox.grid(row=2, column=1, padx=10, pady=5)
 
+        # Add payload label and combobox to the grid
         self.payload_label.grid(row=3, column=0, sticky=tk.W, pady=5)
         self.payload_combobox.grid(row=3, column=1, padx=10, pady=5)
 
         self.start_button.grid(row=4, column=0, columnspan=2, pady=10)
-
-        # Add some padding to all widgets in the frame
-        for child in self.main_frame.winfo_children():
-            child.grid_configure(padx=5, pady=5)
 
     def start_scan(self):
         domain = self.domain_entry.get()
