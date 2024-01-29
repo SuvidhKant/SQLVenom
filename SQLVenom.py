@@ -1,7 +1,12 @@
+import messagebox
 import requests
+import argparse
 import tkinter as tk
-from tkinter import ttk, messagebox
-from core import requester, extractor, crawler
+from tkinter import ttk
+from tkinter import messagebox as tk_messagebox
+from core import requester
+from core import extractor
+from core import crawler
 from urllib.parse import unquote
 
 payloads_dict = {
@@ -26,25 +31,22 @@ class SQLVenomGUI:
         self.root = root
         self.root.title("SQL Venom GUI")
 
-        # Add a frame for better organization
-        self.main_frame = ttk.Frame(root, padding="20")
-        self.main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
-
-        self.domain_label = ttk.Label(self.main_frame, text="Domain:")
-        self.domain_entry = ttk.Entry(self.main_frame)
+        self.domain_label = ttk.Label(root, text="Domain:")
+        self.domain_entry = ttk.Entry(root)
 
         self.subs_var = tk.BooleanVar()
-        self.subs_check = ttk.Checkbutton(self.main_frame, text="Include Subdomains", variable=self.subs_var)
+        self.subs_check = ttk.Checkbutton(root, text="Include Subdomains", variable=self.subs_var)
 
-        self.font_label = ttk.Label(self.main_frame, text="Choose PyFiglet Font:")
-        self.font_combobox = ttk.Combobox(self.main_frame, values=["Standard", "Slant"])
+        self.font_label = ttk.Label(root, text="Choose PyFiglet Font:")
+        self.font_combobox = ttk.Combobox(root, values=["Standard", "Slant"])
         self.font_combobox.set("Font")
 
-        self.payload_label = ttk.Label(self.main_frame, text="Select Payload Type:")
-        self.payload_combobox = ttk.Combobox(self.main_frame, values=["Generic SQL Injection", "Generic Error Based", "Generic Time Based SQL", "Auth Bypass", "Generic Union Select"])
+        # Add a label and combobox for selecting payload type
+        self.payload_label = ttk.Label(root, text="Select Payload Type:")
+        self.payload_combobox = ttk.Combobox(root, values=["Generic SQL Injection", "Generic Error Based", "Generic Time Based SQL", "Auth Bypass", "Generic Union Select"])
         self.payload_combobox.set("Select Payload")
 
-        self.start_button = ttk.Button(self.main_frame, text="Start SQL Injection Scan", command=self.start_scan)
+        self.start_button = ttk.Button(root, text="Start SQL Injection Scan", command=self.start_scan)
 
         # Arrange widgets using grid
         self.domain_label.grid(row=0, column=0, sticky=tk.W, pady=5)
@@ -65,7 +67,7 @@ class SQLVenomGUI:
         domain = self.domain_entry.get()
         subs = self.subs_var.get()
         font = self.font_combobox.get()
-        payload_type = self.payload_combobox.get()
+        payload_type = self.payload_combobox.get()  # Get the selected payload type
 
         if not domain:
             messagebox.showerror("Error", "Please enter a domain.")
@@ -86,6 +88,7 @@ class SQLVenomGUI:
         injection_type = get_injection_type(font)
         final_uris = extractor.param_extract(response, injection_type, exclude, "")
 
+        # Use the selected payload type in your scan logic
         file_name = payloads_dict[payload_type]
         with open(file_name, 'r') as file:
             payloads = file.readlines()
@@ -104,11 +107,14 @@ class SQLVenomGUI:
                         break
                 except:
                     pass
-
+        # Display a message before closing the window
         messagebox.showinfo("Scan Complete", "The scan has been completed successfully")
+
+        # Close the GUI window
         self.root.destroy()
 
 if __name__ == "__main__":
     root = tk.Tk()
     app = SQLVenomGUI(root)
     root.mainloop()
+
