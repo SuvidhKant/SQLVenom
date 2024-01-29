@@ -10,7 +10,7 @@ SQL Venom is a simple Python tool designed for scanning SQL injection vulnerabil
 
 
 <p align="center"> 
-<img src="img/1.png">
+<img src="img/2.png">
 </p>
 
 
