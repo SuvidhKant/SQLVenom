@@ -21,19 +21,19 @@ SQL Venom is a simple Python tool designed for scanning SQL injection vulnerabil
 ## How to Use:
 
 
-### Clone the repository:
+#### Clone the repository:
 
 * git clone https://github.com/SuvidhKant/SQLVenom.git
 
-### Navigate to the project directory:
+#### Navigate to the project directory:
 
 * cd SQLVenom-Main
 
-### Install the required dependencies:
+#### Install the required dependencies:
 
 * pip install -r requirements.txt
 
-### Run SQL Venom with the target domain:
+#### Run SQL Venom with the target domain:
 
 * python SQLVenom.py 
 
