@@ -1,9 +1,12 @@
 import messagebox
 import requests
 import argparse
+import pyfiglet
+import os
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox as tk_messagebox
+from colorama import init, Fore, Style
 from core import requester
 from core import extractor
 from core import crawler
@@ -16,6 +19,38 @@ payloads_dict = {
     "Auth Bypass": "payloads/payloadsauth_bypass.txt",
     "Generic Union Select": "payloads/payloadsgeneric_Union_Select.txt"
 }
+
+def display_banner():
+    # Generate the SQLVenom banner using PyFiglet
+    sqlvenom_banner = pyfiglet.figlet_format("SQL Venom", font="big")
+    
+    # Get the size of the terminal window
+    terminal_size = os.get_terminal_size()
+    terminal_width = terminal_size.columns
+    terminal_height = terminal_size.lines
+
+    # Calculate the horizontal and vertical padding
+    horizontal_padding = (terminal_width - len(sqlvenom_banner.split('\n')[0])) // 2
+    vertical_padding = (terminal_height - len(sqlvenom_banner.split('\n'))) // 2
+
+    init()  # Initialize colorama
+
+    # Print red underline above the banner
+    print(Fore.RED + '-' * terminal_width)
+    print(Fore.RED + '-' * terminal_width)
+
+    print()
+    print()
+
+    # Print the banner with centered padding
+    for line in sqlvenom_banner.split('\n'):
+        print(Fore.BLUE + ' ' * horizontal_padding + line + Style.RESET_ALL)
+
+    # print()
+
+    # print two lines of hyphens above and below the banner with red color
+    print(Fore.RED + '-' * terminal_width)
+    print(Fore.RED + '-' * terminal_width)
 
 def concatenate_list_data(lst, result):
     for element in lst:
@@ -114,6 +149,7 @@ class SQLVenomGUI:
         self.root.destroy()
 
 if __name__ == "__main__":
+    display_banner()
     root = tk.Tk()
     app = SQLVenomGUI(root)
     root.mainloop()
