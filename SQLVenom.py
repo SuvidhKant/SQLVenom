@@ -46,8 +46,6 @@ def display_banner():
     for line in sqlvenom_banner.split('\n'):
         print(Fore.BLUE + ' ' * horizontal_padding + line + Style.RESET_ALL)
 
-    # print()
-
     # print two lines of hyphens above and below the banner with red color
     print(Fore.RED + '-' * terminal_width)
     print(Fore.RED + '-' * terminal_width)
@@ -58,7 +56,7 @@ def concatenate_list_data(lst, result):
     return result
 
 def get_injection_type(font):
-    # You can customize this function based on your requirements
+    # Customize this function based on requirements
     return 'standard'
 
 class SQLVenomGUI:
